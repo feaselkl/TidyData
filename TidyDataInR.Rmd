@@ -1,0 +1,108 @@
+---
+title: "Tidying Data With R"
+output:
+  html_document: default
+  html_notebook: default
+---
+
+This notebook will walk through parts of the [tidyr vignette](ftp://cran.r-project.org/pub/R/web/packages/tidyr/vignettes/tidy-data.html).  We will load a number of different data sources and gain an understanding how the tidyverse can make analysis with R easier.
+
+Let's install the relevant packages.
+
+```{r}
+install.packages('tidyr', repos = "http://cran.us.r-project.org")
+install.packages('dplyr', repos = "http://cran.us.r-project.org")
+install.packages('ggplot2', repos = "http://cran.us.r-project.org")
+install.packages('rpart', repos = "http://cran.us.r-project.org")
+install.packages('readr', repos = "http://cran.us.r-project.org")
+
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+library(rpart)
+library(readr)
+```
+
+We will look at using the tidyverse packages, particularly tidyr and dplyr, to solve several problems.
+
+###Column headers are values rather than variable names
+This is a common issue with reading in reports, where particular values of a variable will show up as columns in a matrix.  See for example this Pew survey, where income values make up the columns on a matrix.
+
+<img src="Images/Pew.png" />
+
+In order to tidy up this data, we will need to *unpivot* our income data.  Doing this is pretty easy with the *gather* function in tidyr!
+				
+```{r}
+pew <- tbl_df(read.csv("Data/pew.csv", stringsAsFactors = FALSE, check.names = FALSE))
+pew <- pew %>%
+        gather(income, frequency, -religion)
+```
+
+The biggest benefit we get from this is that it's easy to plot this data using something like ggplot2.
+
+```{r}
+ggplot(pew, aes(x=religion, y=frequency, fill=income)) +
+  geom_bar(stat="identity") +
+  xlab("\nType") +
+  ylab("Number Of Respondants\n") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+
+```
+
+###Multiple variables stored in one column
+You might need to work with a data set which smashes two (or more) variables into a single field in order to display results as a matrix.  The *gather* and *separate* functions in tidyr can let us tidy up this data set.
+
+<img src="Images/TB.png" />
+
+In this case, the column values are a combination of two variables:  sex and age range, where m04 is males aged 0-4 and f1524 is females aged 15-24.
+
+```{r}
+tb <- tbl_df(read.csv("Data/tb.csv", stringsAsFactors = FALSE))
+
+tb2 <- tb %>% 
+  #gather will take all columns except iso2 and year and turn them into
+  #relevant values for a variable, calling that value "demo"
+  gather(demo, n, -iso2, -year, na.rm = TRUE) %>% 
+  #separate will split out sex and age from the demographic variable. 
+  separate(demo, c("sex", "age"), 1)
+
+tb2
+```
+
+Doing this gives us four relevant variables:  iso2, year, sex, and age.  It also gives us one measure:  n (number of patients).  We can regress n against year, sex, and age to build a simple model:
+
+```{r}
+tblm <- lm(formula = n ~ year + sex + age, data = tb2)
+
+summary(tblm)
+```
+
+These results show significant variables but a very low R^2, meaning that the explanatory power of this particular OLS regression model is weak.
+
+###Entity-Attribute-Value
+
+Sometimes data sets come in as Entity-Attribute-Value pairs, where variable names are stored in rows along with the variable values.
+
+```{r}
+weather <- tbl_df(read.csv("Data/weather.csv", stringsAsFactors = FALSE))
+```
+
+<img src="Images/Weather.png" />
+
+In this data set, there are two variables, tmin and tmax, which are represented with different rows.  In addition to that, we have another variable spread out across the columns.  To tidy this data set, we'll need to *gather* the variables stored as columns and also *spread* the variables stored as rows.
+
+```{r}
+weather2 <- weather %>%
+  gather(day, value, d1:d31, na.rm = TRUE) %>% 
+  mutate(day = readr::parse_number(day)) %>%
+  select(id, year, month, day, element, value) %>%
+  arrange(id, year, month, day) %>%
+  spread(element, value)
+```
+
+```{r}
+ggplot(weather2, aes(x=day, y=tmax)) +
+    geom_line()
+```
+
