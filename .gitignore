@@ -301,3 +301,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+Data/.Rhistory
+*.RData
+Data/Police.csv
