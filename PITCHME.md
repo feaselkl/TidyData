@@ -273,3 +273,42 @@ We will take a closer look at dplyr with the next example.
 
 ### Demo Time
 
+---
+
+@title[R - Data and Outlier Analysis]
+
+## Agenda
+1. High-Level Concepts
+2. SQL Server - Constraints
+3. SQL Server - Mapping Tables
+4. R - tidyr
+5. R - dplyr
+6. **R - Data and Outlier Analysis**
+
+---?image=presentation/assets/background/8_1_outlier.jpg&size=cover&opacity=20
+
+### Data and Outliers
+
+Using tidyr, dplyr, and some basic visualization techniques, we can perform univariate and multivariate analysis to determine whether the data is clean.  We will focus mostly on univariate and visual analysis in the following example.
+
+---?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=20
+
+### Demo Time
+
+---
+
+@title[Additional Ideas]
+
+### Wrapping Up
+
+This has been a quick survey of data cleansing techniques.  For next steps, look at:
+* SQL Server Data Quality Services
+* Integration with external data sources (APIs to look up UPCs, postal addresses, etc.)
+* Value distribution analysis (ex: Benford's Law)
+
+---
+
+### Wrapping Up
+
+To learn more, go here:  <a href="http://csmore.info/on/cleansing">http://CSmore.info/on/cleansing</a>
+And for help, contact me:  <a href="mailto:feasel@catallaxyservices.com">feasel@catallaxyservices.com</a>
