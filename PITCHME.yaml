@@ -7,8 +7,8 @@
 theme : night
 theme-override : presentation/assets/css/PITCHME.css
 logo : presentation/assets/image/logo.png
-background : presentation/assets/image/petals.svg
-background-size : cover
+#background : presentation/assets/image/petals.svg
+#background-size : cover
 highlight : atom-one-light
 transition : none
 published : true

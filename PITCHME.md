@@ -1,9 +1,11 @@
+---?image=presentation/assets/image/petals.svg&size=cover
+
 ## Data Cleansing with SQL and R
 
 <a href="http://www.catallaxyservices.com">Kevin Feasel</a> (<a href="https://twitter.com/feaselkl">@feaselkl</a>)
 <a href="http://csmore.info/on/cleansing">http://CSmore.info/on/cleansing</a>
 
----
+---?image=presentation/assets/image/petals.svg&size=cover
 
 @title[Who Am I?]
 
@@ -32,9 +34,9 @@
 </div>
 @snapend
 
----?color=black&image=presentation/assets/background/2_0_cleaning.jpg&size=cover&opacity=40
+---?image=presentation/assets/background/2_0_cleaning.jpg&size=cover&opacity=40
 
-## Dirty Data
+### Dirty Data
 
 What is dirty data?
 
@@ -67,7 +69,7 @@ This will necessarily be an incomplete survey of data cleansing techniques, but 
 
 We will not look at Data Quality Services or other data provenance tools in this talk, but these tools are important.
 
----
+---?image=presentation/assets/image/petals.svg&size=cover
 
 @title[High-Level Concepts]
 
@@ -79,7 +81,7 @@ We will not look at Data Quality Services or other data provenance tools in this
 5. R - dplyr
 6. R - Data and Outlier Analysis
 
-+++
++++?image=presentation/assets/image/petals.svg&size=cover
 
 | Type | Sample Issues |
 | ---- | :------------ |
@@ -98,9 +100,9 @@ We will not look at Data Quality Services or other data provenance tools in this
 3. Fixable bad data (e.g., misspellings, errors where intention is known) should be fixed and stay.
 4. Unfixable bad data is a tougher call.  Could set to default, make a "best guess" change(!!), set to {NA, NULL, Unknown}, or drop from the analysis.
 
----
+---?image=presentation/assets/image/petals.svg&size=cover
 
-@title[High-Level Concepts]
+@title[SQL Server - Constraints]
 
 ## Agenda
 1. High-Level Concepts
@@ -124,7 +126,7 @@ Relational databases have several concepts to promote data quality:
 * Check constraints
 * Default constraints
 
-+++
++++?image=presentation/assets/image/petals.svg&size=cover
 
 ### Normalization
 
