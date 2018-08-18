@@ -1,3 +1,7 @@
+<style>
+.reveal section img { background:none; border:none; box-shadow:none; }
+</style>
+
 ---
 
 ## Data Cleansing with SQL and R
