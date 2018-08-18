@@ -133,6 +133,7 @@ When in doubt, go with Boyce-Codd Normal Form.
 <p>**First Normal Form** - consistent shape + unique entities + atomic attributes</p>
 
 @div[left-50]
+<br />
 ![Database-Normalization](presentation/assets/background/4_1_normalization.png)
 @divend
 
@@ -140,4 +141,24 @@ When in doubt, go with Boyce-Codd Normal Form.
 <p>**Boyce-Codd Normal Form** - 1NF + all attributes fully dependent upon a candidate key + every determinant is a key.</p>
 @divend
 
++++?image=presentation/assets/background/4_3_datatypes.jpg&size=cover&opacity=40
 
+Think through your data type choices.
+
+* Use the best data type (int/decimal for numeric, date/datetime/datetime2/time for date data, etc.)
+* Use the smallest data type which solves the problem (Ex: date instead of datetime, varchar(10) instead of varchar(max))
+
++++?image=presentation/assets/background/4_4_constraints.jpg&size=cover&opacity=40
+
+### Constraints
+
+Use constraints liberally.
+* Primary key to describe the primary set of attributes which describes an entity.
+* Unique keys to describe alternate sets of attributes which describe an entity.
+* Foreign keys to describe how entities relate.
+* Check constraints to explain valid domains for attributes and attribute combinations.
+* Default constraints when there is a reasonable alternative to NULL.
+
++++?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=40
+
+### Demo Time
