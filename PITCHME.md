@@ -44,5 +44,25 @@ What is dirty data?
 * Inaccurate data
 * Duplicate data
 
-+++
++++?image=presentation/assets/background/2_1_philosophy.jpg&size=cover&opacity=40
 
+### Philosophy
+
+The ideal solution is to clean data at the nearest possible point.  In rank order:
+1. Before it gets into the OLTP system
+2. Once it is in the OLTP system
+3. ETL process to the warehouse
+4. Once it is in the warehouse
+5. During data analysis
+
+Not all systems follow OLTP => DW => Analysis, so it is valuable to know multiple techniques for data cleansing.
+
++++?image=presentation/assets/background/2_2_motivation.jpg&size=cover&opacity=40
+
+### Motivation
+
+Today's talk will focus on data cleansing within SQL Server and R, with an emphasis on R.  In SQL Server, we will focus on data structures.  In R, we will focus on the concept of tidy data.
+
+This will necessarily be an incomplete survey of data cleansing techniques, but should serve as a starting point for further exploration.
+
+We will not look at Data Quality Services or other data provenance tools in this talk, but these tools are important.
