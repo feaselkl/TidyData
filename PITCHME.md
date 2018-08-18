@@ -1,11 +1,11 @@
----?image=presentation/assets/image/petals.svg
+---?image=presentation/assets/image/petals.svg&size=cover
 
 ## Data Cleansing with SQL and R
 
 <a href="http://www.catallaxyservices.com">Kevin Feasel</a> (<a href="https://twitter.com/feaselkl">@feaselkl</a>)
 <a href="http://csmore.info/on/cleansing">http://CSmore.info/on/cleansing</a>
 
----?image=presentation/assets/image/petals.svg
+---?image=presentation/assets/image/petals.svg&size=cover
 
 @title[Who Am I?]
 
@@ -34,7 +34,7 @@
 </div>
 @snapend
 
----?image=presentation/assets/background/2_0_cleaning.jpg&opacity=40
+---?image=presentation/assets/background/2_0_cleaning.jpg&size=cover&opacity=40
 
 ### Dirty Data
 
@@ -46,7 +46,7 @@ What is dirty data?
 * Inaccurate data
 * Duplicate data
 
-+++?image=presentation/assets/background/2_1_philosophy.jpg&opacity=40
+---?image=presentation/assets/background/2_1_philosophy.jpg&size=cover&opacity=40
 
 ### Philosophy
 
@@ -59,7 +59,7 @@ The ideal solution is to clean data at the nearest possible point.  In rank orde
 
 Not all systems follow OLTP => DW => Analysis, so it is valuable to know multiple techniques for data cleansing.
 
-+++?image=presentation/assets/background/2_2_motivation.jpg&opacity=40
+---?image=presentation/assets/background/2_2_motivation.jpg&size=cover&opacity=40
 
 ### Motivation
 
@@ -69,7 +69,7 @@ This will necessarily be an incomplete survey of data cleansing techniques, but 
 
 We will not look at Data Quality Services or other data provenance tools in this talk, but these tools are important.
 
----?image=presentation/assets/image/petals.svg
+---?image=presentation/assets/image/petals.svg&size=cover
 
 @title[High-Level Concepts]
 
@@ -81,7 +81,7 @@ We will not look at Data Quality Services or other data provenance tools in this
 5. R - dplyr
 6. R - Data and Outlier Analysis
 
-+++?image=presentation/assets/image/petals.svg
+---?image=presentation/assets/image/petals.svg&size=cover
 
 | Type | Sample Issues |
 | ---- | :------------ |
@@ -91,7 +91,7 @@ We will not look at Data Quality Services or other data provenance tools in this
 | Accuracy | Absurd-looking answers?  Multiple sources with conflicting results?  Suspicious sources? |
 | Duplication | Can I tell if data is duplicated? |
 
-+++?image=presentation/assets/background/3_6_rules.jpg&opacity=40
+---?image=presentation/assets/background/3_6_rules.jpg&size=cover&opacity=40
 
 ### Rules of Thumb
 
@@ -100,7 +100,7 @@ We will not look at Data Quality Services or other data provenance tools in this
 3. Fixable bad data (e.g., misspellings, errors where intention is known) should be fixed and stay.
 4. Unfixable bad data is a tougher call.  Could set to default, make a "best guess" change(!!), set to {NA, NULL, Unknown}, or drop from the analysis.
 
----?image=presentation/assets/image/petals.svg
+---?image=presentation/assets/image/petals.svg&size=cover
 
 @title[SQL Server - Constraints]
 
@@ -112,7 +112,7 @@ We will not look at Data Quality Services or other data provenance tools in this
 5. R - dplyr
 6. R - Data and Outlier Analysis
 
-+++?image=presentation/assets/background/4_1_dataquality.jpg&opacity=40
+---?image=presentation/assets/background/4_1_dataquality.jpg&size=cover&opacity=40
 
 ### Keys and Constraints
 
@@ -126,7 +126,7 @@ Relational databases have several concepts to promote data quality:
 * Check constraints
 * Default constraints
 
-+++?image=presentation/assets/image/petals.svg
+---?image=presentation/assets/image/petals.svg&size=cover
 
 ### Normalization
 
@@ -143,7 +143,7 @@ When in doubt, go with Boyce-Codd Normal Form.
 <p>**Boyce-Codd Normal Form** - 1NF + all attributes fully dependent upon a candidate key + every determinant is a key.</p>
 @divend
 
-+++?image=presentation/assets/background/4_3_datatypes.jpg&opacity=40
+---?image=presentation/assets/background/4_3_datatypes.jpg&size=cover&opacity=40
 
 ### Data Types
 
@@ -152,7 +152,7 @@ Think through your data type choices.
 * Use the best data type (int/decimal for numeric, date/datetime/datetime2/time for date data, etc.)
 * Use the smallest data type which solves the problem (Ex: date instead of datetime, varchar(10) instead of varchar(max))
 
-+++?image=presentation/assets/background/4_4_constraints.jpg&opacity=40
+---?image=presentation/assets/background/4_4_constraints.jpg&size=cover&opacity=40
 
 ### Constraints
 
@@ -163,11 +163,11 @@ Use constraints liberally.
 * Check constraints to explain valid domains for attributes and attribute combinations.
 * Default constraints when there is a reasonable alternative to NULL.
 
-+++?image=presentation/assets/background/4_5_demo.jpg&opacity=40
+---?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=40
 
 ### Demo Time
 
----?image=presentation/assets/image/petals.svg
+---?image=presentation/assets/image/petals.svg&size=cover
 
 @title[SQL Server - Mapping Tables]
 
