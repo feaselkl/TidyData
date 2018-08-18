@@ -72,7 +72,7 @@ We will not look at Data Quality Services or other data provenance tools in this
 @title[High-Level Concepts]
 
 ## Agenda
-1. High-Level Concepts
+1. **High-Level Concepts**
 2. SQL Server - Constraints
 3. SQL Server - Mapping Tables
 4. R - tidyr
@@ -83,11 +83,11 @@ We will not look at Data Quality Services or other data provenance tools in this
 
 | Type | Sample Issues |
 | ---- | :------------ |
-| Consistency | Misspellings? Data stored in multiple places out of sync? Consistent answers (e.g., 9 total years of schooling but has a PhD?). |
-| Validity | Physically or logically impossible answers (e.g., 6-year-old with a driver's license) |
-| Completeness | Are there missing values (represented with NULL, NA, etc.) vital for analysis?  Can we use reasonable defaults? |
-| Accuracy | Absurd-looking answers?  Multiple sources with conflicting results?  Suspicious source? |
-| Duplication | Can I tell if data is duplicated?  Can I filter out duplicate results? |
+| Consistency | Misspellings? Data stored in multiple places out of sync? |
+| Validity | Physically or logically impossible answers? |
+| Completeness | Missing values (represented with NULL, NA, etc.)? |
+| Accuracy | Absurd-looking answers?  Multiple sources with conflicting results?  Suspicious sources? |
+| Duplication | Can I tell if data is duplicated? |
 
 +++?image=presentation/assets/background/3_6_rules.jpg&size=cover&opacity=40
 
@@ -97,4 +97,46 @@ We will not look at Data Quality Services or other data provenance tools in this
 2. "Missing" data (e.g., records with some NULL values) should stay, although might not be viable for all analyses.
 3. Fixable bad data (e.g., misspellings, errors where intention is known) should be fixed and stay.
 4. Unfixable bad data is a tougher call.  Could set to default, make a "best guess" change(!!), set to {NA, NULL, Unknown}, or drop from the analysis.
+
+---
+
+@title[High-Level Concepts]
+
+## Agenda
+1. High-Level Concepts
+2. **SQL Server - Constraints**
+3. SQL Server - Mapping Tables
+4. R - tidyr
+5. R - dplyr
+6. R - Data and Outlier Analysis
+
++++?image=presentation/assets/background/4_1_dataquality.jpg&size=cover&opacity=40
+
+### Keys and Constraints
+
+Relational databases have several concepts to promote data quality:
+
+* Normalization
+* Data types
+* Primary key constraints
+* Unique key constraints
+* Foreign key constraints
+* Check constraints
+* Default constraints
+
++++
+
+### Normalization
+
+@snap[west splitscreen]
+![Database-Normalization](presentation/assets/background/4_1_normalization.png)
+@snapend
+
+@snap[east splitscreen]
+When in doubt, go with Boyce-Codd Normal Form.
+
+**First Normal Form** - consistent shape + unique entities + atomic attributes
+**Boyce-Codd Normal Form** - 1NF + all attributes fully dependent upon a candidate key + every determinant is a key.
+@snapend
+
 
