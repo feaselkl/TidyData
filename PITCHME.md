@@ -34,7 +34,7 @@
 </div>
 @snapend
 
----?image=presentation/assets/background/2_0_cleaning.jpg&size=cover&opacity=30
+---?image=presentation/assets/background/2_0_cleaning.jpg&size=cover&opacity=25
 
 ### Dirty Data
 
@@ -46,7 +46,7 @@ What is dirty data?
 * Inaccurate data
 * Duplicate data
 
----?image=presentation/assets/background/2_1_philosophy.jpg&size=cover&opacity=30
+---?image=presentation/assets/background/2_1_philosophy.jpg&size=cover&opacity=25
 
 ### Philosophy
 
@@ -59,7 +59,7 @@ The ideal solution is to clean data at the nearest possible point.  In rank orde
 
 Not all systems follow OLTP => DW => Analysis, so it is valuable to know multiple techniques for data cleansing.
 
----?image=presentation/assets/background/2_2_motivation.jpg&size=cover&opacity=30
+---?image=presentation/assets/background/2_2_motivation.jpg&size=cover&opacity=25
 
 ### Motivation
 
@@ -83,6 +83,8 @@ We will not look at Data Quality Services or other data provenance tools in this
 
 ---
 
+@title[Data Quality Issues]
+
 | Type | Sample Issues |
 | ---- | :------------ |
 | Consistency | Misspellings? Data stored in multiple places out of sync? |
@@ -91,7 +93,7 @@ We will not look at Data Quality Services or other data provenance tools in this
 | Accuracy | Absurd-looking answers?  Multiple sources with conflicting results?  Suspicious sources? |
 | Duplication | Can I tell if data is duplicated? |
 
----?image=presentation/assets/background/3_6_rules.jpg&size=cover&opacity=30
+---?image=presentation/assets/background/3_6_rules.jpg&size=cover&opacity=25
 
 ### Rules of Thumb
 
@@ -112,9 +114,9 @@ We will not look at Data Quality Services or other data provenance tools in this
 5. R - dplyr
 6. R - Data and Outlier Analysis
 
----?image=presentation/assets/background/4_1_dataquality.jpg&size=cover&opacity=30
+---?image=presentation/assets/background/4_1_dataquality.jpg&size=cover&opacity=25
 
-### Keys and Constraints
+### Relational Data Quality Tools
 
 Relational databases have several concepts to promote data quality:
 
@@ -143,7 +145,7 @@ When in doubt, go with Boyce-Codd Normal Form.
 <p>**Boyce-Codd Normal Form** - 1NF + all attributes fully dependent upon a candidate key + every determinant is a key.</p>
 @divend
 
----?image=presentation/assets/background/4_3_datatypes.jpg&size=cover&opacity=30
+---?image=presentation/assets/background/4_3_datatypes.jpg&size=cover&opacity=25
 
 ### Data Types
 
@@ -152,7 +154,7 @@ Think through your data type choices.
 * Use the best data type (int/decimal for numeric, date/datetime/datetime2/time for date data, etc.)
 * Use the smallest data type which solves the problem (Ex: date instead of datetime, varchar(10) instead of varchar(max))
 
----?image=presentation/assets/background/4_4_constraints.jpg&size=cover&opacity=30
+---?image=presentation/assets/background/4_4_constraints.jpg&size=cover&opacity=25
 
 ### Constraints
 
@@ -163,7 +165,7 @@ Use constraints liberally.
 * Check constraints to explain valid domains for attributes and attribute combinations.
 * Default constraints when there is a reasonable alternative to NULL.
 
----?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=30
+---?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=25
 
 ### Demo Time
 
@@ -178,3 +180,92 @@ Use constraints liberally.
 4. R - tidyr
 5. R - dplyr
 6. R - Data and Outlier Analysis
+
+---?image=presentation/assets/background/6_1_mapping_table.jpg&opacity=25
+
+### Mapping Tables
+
+One technique for creating higher-level categories for items in transactional data is to use a mapping table:  an external relationship made without directly modifying the primary data.
+This can be a new (nullable) column on an existing table or a foreign key to a new table with the mapping relationhship.
+
+---?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=25
+
+### Demo Time
+
+---
+
+@title[R - tidyr]
+
+## Agenda
+1. High-Level Concepts
+2. SQL Server - Constraints
+3. SQL Server - Mapping Tables
+4. **R - tidyr**
+5. R - dplyr
+6. R - Data and Outlier Analysis
+
+---?image=presentation/assets/background/7_1_tidy.jpg&size=cover&opacity=25
+
+### What is Tidy Data?
+
+Notes from Hadley Wickham's **Structuring Datasets to Facilitate Analysis**
+
+1. Data sets are made of variables & observations (attributes & entities)
+2. Variables contain all values that measure the same underlying attribute (e.g., height, temperature, duration) across units
+3. Observations contain all values measured on the same unit (a person, a day, a hospital stay) across attributes
+
+---?image=presentation/assets/background/7_2_tidy.jpg&size=cover&opacity=25
+
+### More on Tidy Data
+
+Notes from Hadley Wickham's **Structuring Datasets to Facilitate Analysis**
+
+4. It is easier to describe relationships between variables (age is a function of birthdate and current date)
+5. It is easier to make comparisons between groups of attributes (how many people are using this phone number?)
+6. Tidy data IS third normal form (or, preferably, Boyce-Codd Normal Form)!
+
+---
+
+### tidyr
+
+@snap [west splitscreen]
+![tidyr Logo](presentation/assets/image/hex-tidyr.png)
+@snapend
+
+@snap [east splitscreen]
+tidyr is a library whose purpose is to use simple functions to make data frames tidy.  It includes functions like gather (unpivot), separate (split apart a variable), and spread (pivot).
+@snapend
+
+---?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=25
+
+### Demo Time
+
+---
+
+@title[R - dplyr]
+
+## Agenda
+1. High-Level Concepts
+2. SQL Server - Constraints
+3. SQL Server - Mapping Tables
+4. R - tidyr
+5. **R - dplyr**
+6. R - Data and Outlier Analysis
+
+---
+
+### dplyr
+
+@snap [west splitscreen]
+![dplyr Logo](presentation/assets/image/hex-dplyr.png)
+@snapend
+
+@snap [east splitscreen]
+tidyr is just one part of the tidyverse.  Other tidyverse packages include dplyr, lubridate, and readr.
+We will take a closer look at dplyr with the next example.
+@snapend
+
+---?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=25
+
+### Demo Time
+
