@@ -13,12 +13,10 @@
 @css[tip](Inline Image at <b>Absolute URL</b>)
 <p>
 	<a href="https://csmore.info"><img src="https://www.catallaxyservices.com/media/Logo.png" height="133" width="119" /></a>
-	<br>
 	<a href="https://csmore.info">Catallaxy Services</a></td>
 </p>
 <p>
 	<a href="https://curatedsql.com"><img src="https://www.catallaxyservices.com/media/CuratedSQLLogo.png" height="133" width="119" /></a>
-	<br>
 	<a href="https://curatedsql.com">Curated SQL</a>
 </p>
 <p>
@@ -27,7 +25,7 @@
 </p>
 @snapend
 
-@snap[east splitscreen fragment]
+@snap[east splitscreen]
 <p>
 	<a href="http://www.twitter.com/feaselkl"><img src="https://www.catallaxyservices.com/media/HeadShot.jpg" height="358" width="315" /></a>
 	<br />
