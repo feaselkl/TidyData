@@ -2,8 +2,6 @@
 .reveal section img { background:none; border:none; box-shadow:none; }
 </style>
 
----
-
 ## Data Cleansing with SQL and R
 
 <a href="http://www.catallaxyservices.com">Kevin Feasel</a> (<a href="https://twitter.com/feaselkl">@feaselkl</a>)
