@@ -7,10 +7,7 @@
 
 @title[Who Am I?]
 
-### Who Am I?  What Am I Doing Here?
-
 @snap[west splitscreen]
-@css[tip](Inline Image at <b>Absolute URL</b>)
 <p>
 	<a href="https://csmore.info"><img src="https://www.catallaxyservices.com/media/Logo.png" height="133" width="119" /></a>
 	<a href="https://csmore.info">Catallaxy Services</a></td>
