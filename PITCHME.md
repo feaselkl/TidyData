@@ -141,7 +141,9 @@ When in doubt, go with Boyce-Codd Normal Form.
 <p>**Boyce-Codd Normal Form** - 1NF + all attributes fully dependent upon a candidate key + every determinant is a key.</p>
 @divend
 
-+++?image=presentation/assets/background/4_3_datatypes.jpg&size=cover&opacity=40
++++?image=presentation/assets/background/4_3_datatypes.jpg&size=cover&opacity=40&color=white
+
+### Data Types
 
 Think through your data type choices.
 
