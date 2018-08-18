@@ -228,13 +228,13 @@ Notes from Hadley Wickham's **Structuring Datasets to Facilitate Analysis**
 
 ### tidyr
 
-@snap [west splitscreen]
+@div[left-50]
 ![tidyr Logo](presentation/assets/image/hex-tidyr.png)
-@snapend
+@divend
 
-@snap [east splitscreen]
+@div[right-50]
 tidyr is a library whose purpose is to use simple functions to make data frames tidy.  It includes functions like gather (unpivot), separate (split apart a variable), and spread (pivot).
-@snapend
+@divend
 
 ---?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=20
 
@@ -256,14 +256,14 @@ tidyr is a library whose purpose is to use simple functions to make data frames 
 
 ### dplyr
 
-@snap [west splitscreen]
+@div[left-50]
 ![dplyr Logo](presentation/assets/image/hex-dplyr.png)
-@snapend
+@divend
 
-@snap [east splitscreen]
+@div[right-50]
 tidyr is just one part of the tidyverse.  Other tidyverse packages include dplyr, lubridate, and readr.
 We will take a closer look at dplyr with the next example.
-@snapend
+@divend
 
 ---?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=20
 
