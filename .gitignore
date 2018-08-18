@@ -304,3 +304,8 @@ $RECYCLE.BIN/
 Data/.Rhistory
 *.RData
 Data/Police.csv
+.ipynb_checkpoints/dplyr Demo-checkpoint.ipynb
+.ipynb_checkpoints/Raleigh 2014 Incident Analysis-checkpoint.ipynb
+.ipynb_checkpoints/Raleigh 2014 Incident Time Series Analysis-checkpoint.ipynb
+.ipynb_checkpoints/Raleigh Crime Analysis-checkpoint.ipynb
+.ipynb_checkpoints/Tidy Data With TidyR-checkpoint.ipynb
