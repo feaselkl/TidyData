@@ -66,3 +66,35 @@ Today's talk will focus on data cleansing within SQL Server and R, with an empha
 This will necessarily be an incomplete survey of data cleansing techniques, but should serve as a starting point for further exploration.
 
 We will not look at Data Quality Services or other data provenance tools in this talk, but these tools are important.
+
+---
+
+@title[High-Level Concepts]
+
+## Agenda
+1. High-Level Concepts
+2. SQL Server - Constraints
+3. SQL Server - Mapping Tables
+4. R - tidyr
+5. R - dplyr
+6. R - Data and Outlier Analysis
+
++++
+
+| Type | Sample Issues |
+| ---- | :------------ |
+| Consistency | Misspellings? Data stored in multiple places out of sync? Consistent answers (e.g., 9 total years of schooling but has a PhD?). |
+| Validity | Physically or logically impossible answers (e.g., 6-year-old with a driver's license) |
+| Completeness | Are there missing values (represented with NULL, NA, etc.) vital for analysis?  Can we use reasonable defaults? |
+| Accuracy | Absurd-looking answers?  Multiple sources with conflicting results?  Suspicious source? |
+| Duplication | Can I tell if data is duplicated?  Can I filter out duplicate results? |
+
++++?image=presentation/assets/background/3_6_rules.jpg&size=cover&opacity=40
+
+### Rules of Thumb
+
+1. Impossible measurements (e.g., count of people over 500 years old) should go. Don't waste the space storing that.
+2. "Missing" data (e.g., records with some NULL values) should stay, although might not be viable for all analyses.
+3. Fixable bad data (e.g., misspellings, errors where intention is known) should be fixed and stay.
+4. Unfixable bad data is a tougher call.  Could set to default, make a "best guess" change(!!), set to {NA, NULL, Unknown}, or drop from the analysis.
+
