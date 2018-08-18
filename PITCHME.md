@@ -166,3 +166,15 @@ Use constraints liberally.
 +++?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=40
 
 ### Demo Time
+
+---?image=presentation/assets/image/petals.svg&size=cover
+
+@title[SQL Server - Mapping Tables]
+
+## Agenda
+1. High-Level Concepts
+2. SQL Server - Constraints
+3. **SQL Server - Mapping Tables**
+4. R - tidyr
+5. R - dplyr
+6. R - Data and Outlier Analysis
