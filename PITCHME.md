@@ -128,15 +128,15 @@ Relational databases have several concepts to promote data quality:
 
 ### Normalization
 
-@snap[west splitscreen]
+@div[left-50]
 ![Database-Normalization](presentation/assets/background/4_1_normalization.png)
-@snapend
+@divend
 
-@snap[east splitscreen]
+@div[right-50]
 When in doubt, go with Boyce-Codd Normal Form.
 
 **First Normal Form** - consistent shape + unique entities + atomic attributes
 **Boyce-Codd Normal Form** - 1NF + all attributes fully dependent upon a candidate key + every determinant is a key.
-@snapend
+@divend
 
 
