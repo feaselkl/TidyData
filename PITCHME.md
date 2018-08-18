@@ -32,7 +32,7 @@
 </div>
 @snapend
 
----?image=presentation/assets/background/2_0_cleaning.jpg&size=cover&opacity=40
+---?image=presentation/assets/background/2_0_cleaning.jpg&size=cover&opacity=40&color=white
 
 ## Dirty Data
 
@@ -44,7 +44,7 @@ What is dirty data?
 * Inaccurate data
 * Duplicate data
 
-+++?image=presentation/assets/background/2_1_philosophy.jpg&size=cover&opacity=40
++++?image=presentation/assets/background/2_1_philosophy.jpg&size=cover&opacity=40&color=white
 
 ### Philosophy
 
@@ -57,7 +57,7 @@ The ideal solution is to clean data at the nearest possible point.  In rank orde
 
 Not all systems follow OLTP => DW => Analysis, so it is valuable to know multiple techniques for data cleansing.
 
-+++?image=presentation/assets/background/2_2_motivation.jpg&size=cover&opacity=40
++++?image=presentation/assets/background/2_2_motivation.jpg&size=cover&opacity=40&color=white
 
 ### Motivation
 
@@ -89,7 +89,7 @@ We will not look at Data Quality Services or other data provenance tools in this
 | Accuracy | Absurd-looking answers?  Multiple sources with conflicting results?  Suspicious sources? |
 | Duplication | Can I tell if data is duplicated? |
 
-+++?image=presentation/assets/background/3_6_rules.jpg&size=cover&opacity=40
++++?image=presentation/assets/background/3_6_rules.jpg&size=cover&opacity=40&color=white
 
 ### Rules of Thumb
 
@@ -110,7 +110,7 @@ We will not look at Data Quality Services or other data provenance tools in this
 5. R - dplyr
 6. R - Data and Outlier Analysis
 
-+++?image=presentation/assets/background/4_1_dataquality.jpg&size=cover&opacity=40
++++?image=presentation/assets/background/4_1_dataquality.jpg&size=cover&opacity=40&color=white
 
 ### Keys and Constraints
 
@@ -150,7 +150,7 @@ Think through your data type choices.
 * Use the best data type (int/decimal for numeric, date/datetime/datetime2/time for date data, etc.)
 * Use the smallest data type which solves the problem (Ex: date instead of datetime, varchar(10) instead of varchar(max))
 
-+++?image=presentation/assets/background/4_4_constraints.jpg&size=cover&opacity=40
++++?image=presentation/assets/background/4_4_constraints.jpg&size=cover&opacity=40&color=white
 
 ### Constraints
 
@@ -161,6 +161,6 @@ Use constraints liberally.
 * Check constraints to explain valid domains for attributes and attribute combinations.
 * Default constraints when there is a reasonable alternative to NULL.
 
-+++?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=40
++++?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=40&color=white
 
 ### Demo Time
