@@ -2,7 +2,7 @@
 .reveal section img { background:none; border:none; box-shadow:none; }
 </style>
 
-## Data Cleansing with SQL and R
+## Data Cleansing with SQL, Power BI, and R
 
 <a href="http://www.catallaxyservices.com">Kevin Feasel</a> (<a href="https://twitter.com/feaselkl">@feaselkl</a>)
 <a href="http://csmore.info/on/cleansing">http://CSmore.info/on/cleansing</a>
@@ -65,7 +65,7 @@ Not all systems follow OLTP => DW => Analysis, so it is valuable to know multipl
 
 ### Motivation
 
-Today's talk will focus on data cleansing within SQL Server and R, with an emphasis on R.  In SQL Server, we will focus on data structures.  In R, we will focus on the concept of tidy data.
+Today's talk will focus on data cleansing within Power BI and R, with a touch of SQL.  In Power BI, we will focus on built-in data cleansing functions.  In R, we will focus on the concept of tidy data.
 
 This will necessarily be an incomplete survey of data cleansing techniques, but should serve as a starting point for further exploration.
 
@@ -78,10 +78,10 @@ We will not look at Data Quality Services or other data provenance tools in this
 ## Agenda
 1. **High-Level Concepts**
 2. SQL Server - Constraints
-3. SQL Server - Mapping Tables
-4. R - tidyr
-5. R - dplyr
-6. R - Data and Outlier Analysis
+3. R - tidyr
+4. R - dplyr
+5. Power BI - Built-In
+6. Power BI - R Integration
 
 ---
 
@@ -111,10 +111,10 @@ We will not look at Data Quality Services or other data provenance tools in this
 ## Agenda
 1. High-Level Concepts
 2. **SQL Server - Constraints**
-3. SQL Server - Mapping Tables
-4. R - tidyr
-5. R - dplyr
-6. R - Data and Outlier Analysis
+3. R - tidyr
+4. R - dplyr
+5. Power BI - Built-In
+6. Power BI - R Integration
 
 ---?image=presentation/assets/background/4_1_dataquality.jpg&size=cover&opacity=15
 
@@ -140,7 +140,7 @@ When in doubt, go with Boyce-Codd Normal Form.
 
 @div[left-40]
 <br />
-![Database-Normalization](presentation/assets/background/4_1_normalization.png)
+![Database-Normalization](presentation/assets/image/4_1_normalization.png)
 @divend
 
 @div[right-60]
@@ -173,38 +173,15 @@ Use constraints liberally.
 
 ---
 
-@title[SQL Server - Mapping Tables]
-
-## Agenda
-1. High-Level Concepts
-2. SQL Server - Constraints
-3. **SQL Server - Mapping Tables**
-4. R - tidyr
-5. R - dplyr
-6. R - Data and Outlier Analysis
-
----?image=presentation/assets/background/6_1_mapping_table.jpg&opacity=15
-
-### Mapping Tables
-
-One technique for creating higher-level categories for items in transactional data is to use a mapping table:  an external relationship made without directly modifying the primary data.
-This can be a new (nullable) column on an existing table or a foreign key to a new table with the mapping relationhship.
-
----?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=15
-
-### Demo Time
-
----
-
 @title[R - tidyr]
 
 ## Agenda
 1. High-Level Concepts
 2. SQL Server - Constraints
-3. SQL Server - Mapping Tables
-4. **R - tidyr**
-5. R - dplyr
-6. R - Data and Outlier Analysis
+3. **R - tidyr**
+4. R - dplyr
+5. Power BI - Built-In
+6. Power BI - R Integration
 
 ---?image=presentation/assets/background/7_1_tidy.jpg&size=cover&opacity=15
 
@@ -249,10 +226,10 @@ tidyr is a library whose purpose is to use simple functions to make data frames 
 ## Agenda
 1. High-Level Concepts
 2. SQL Server - Constraints
-3. SQL Server - Mapping Tables
-4. R - tidyr
-5. **R - dplyr**
-6. R - Data and Outlier Analysis
+3. R - tidyr
+4. **R - dplyr**
+5. Power BI - Built-In
+6. Power BI - R Integration
 
 ---
 
@@ -273,21 +250,49 @@ We will take a closer look at dplyr with the next example.
 
 ---
 
-@title[R - Data and Outlier Analysis]
+@title[Power BI - Built-In]
 
 ## Agenda
 1. High-Level Concepts
 2. SQL Server - Constraints
-3. SQL Server - Mapping Tables
-4. R - tidyr
-5. R - dplyr
-6. **R - Data and Outlier Analysis**
+3. R - tidyr
+4. R - dplyr
+5. **Power BI - Built-In**
+6. Power BI - R Integration
 
----?image=presentation/assets/background/8_1_outlier.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/9_1_clean.jpg&size=cover&opacity=15
 
-### Data and Outliers
+### Power BI Transforms
 
-Using tidyr, dplyr, and some basic visualization techniques, we can perform univariate and multivariate analysis to determine whether the data is clean.  We will focus mostly on univariate and visual analysis in the following example.
+![Available transforms in Power BI](presentation/assets/image/TransformTab.png)
+
+Power BI has a number of built-in transforms, allowing us to clean up messy data easily.  Let's start with some of the most common transformations, including:
+* Pivoting and unpivoting data
+* Splitting values in columns
+* Changing cases (uppercase, lowercase, etc.)
+* Replacing values 
+
+---?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=15
+
+### Demo Time
+
+---
+
+@title[Power BI - R Integration]
+
+## Agenda
+1. High-Level Concepts
+2. SQL Server - Constraints
+3. R - tidyr
+4. R - dplyr
+5. Power BI - Built-In
+6. **Power BI - R Integration**
+
+---?image=presentation/assets/background/10_1_intersection.jpg&size=cover&opacity=15
+
+### Power BI + R
+
+In case Power BI lacks a particular transformation you want, or if you are more comfortable working with R, you can easily perform transformations using R within a Power BI query.
 
 ---?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=15
 

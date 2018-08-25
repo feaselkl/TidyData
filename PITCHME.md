@@ -140,7 +140,7 @@ When in doubt, go with Boyce-Codd Normal Form.
 
 @div[left-40]
 <br />
-![Database-Normalization](presentation/assets/background/4_1_normalization.png)
+![Database-Normalization](presentation/assets/image/4_1_normalization.png)
 @divend
 
 @div[right-60]
