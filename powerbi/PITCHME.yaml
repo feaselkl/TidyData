@@ -1,0 +1,15 @@
+#
+# GitPitch Slideshow Custom Settings
+#
+# For details, visit Wiki:
+# https://github.com/gitpitch/gitpitch/wiki/Slideshow-Settings
+#
+theme : night
+theme-override : ../presentation/assets/css/PITCHME.css
+logo : ../presentation/assets/image/logo.png
+background : ../presentation/assets/image/petals.svg
+background-size : cover
+highlight : atom-one-light
+transition : none
+published : true
+footnote : "Data Cleansing with Power BI and R | https://csmore.info/on/cleansing"
