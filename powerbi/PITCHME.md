@@ -36,7 +36,7 @@
 </div>
 @snapend
 
----?image=../presentation/assets/background/2_0_cleaning.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/2_0_cleaning.jpg&size=cover&opacity=15
 
 ### Dirty Data
 
@@ -48,7 +48,7 @@ What is dirty data?
 * Inaccurate data
 * Duplicate data
 
----?image=../presentation/assets/background/2_1_philosophy.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/2_1_philosophy.jpg&size=cover&opacity=15
 
 ### Philosophy
 
@@ -61,7 +61,7 @@ The ideal solution is to clean data at the nearest possible point.  In rank orde
 
 Not all systems follow OLTP => DW => Analysis, so it is valuable to know multiple techniques for data cleansing.
 
----?image=../presentation/assets/background/2_2_motivation.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/2_2_motivation.jpg&size=cover&opacity=15
 
 ### Motivation
 
@@ -95,7 +95,7 @@ We will not look at Data Quality Services or other data provenance tools in this
 | Accuracy | Absurd-looking answers?  Multiple sources with conflicting results?  Suspicious sources? |
 | Duplication | Can I tell if data is duplicated? |
 
----?image=../presentation/assets/background/3_6_rules.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/3_6_rules.jpg&size=cover&opacity=15
 
 ### Rules of Thumb
 
@@ -116,7 +116,7 @@ We will not look at Data Quality Services or other data provenance tools in this
 5. R - dplyr
 6. R - Data and Outlier Analysis
 
----?image=../presentation/assets/background/4_1_dataquality.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/4_1_dataquality.jpg&size=cover&opacity=15
 
 ### Relational Data Quality Tools
 
@@ -147,7 +147,7 @@ When in doubt, go with Boyce-Codd Normal Form.
 <p>**Boyce-Codd Normal Form** - 1NF + all attributes fully dependent upon a candidate key + every determinant is a key.</p>
 @divend
 
----?image=../presentation/assets/background/4_3_datatypes.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/4_3_datatypes.jpg&size=cover&opacity=15
 
 ### Data Types
 
@@ -156,7 +156,7 @@ Think through your data type choices.
 * Use the best data type (int/decimal for numeric, date/datetime/datetime2/time for date data, etc.)
 * Use the smallest data type which solves the problem (Ex: date instead of datetime, varchar(10) instead of varchar(max))
 
----?image=../presentation/assets/background/4_4_constraints.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/4_4_constraints.jpg&size=cover&opacity=15
 
 ### Constraints
 
@@ -167,7 +167,7 @@ Use constraints liberally.
 * Check constraints to explain valid domains for attributes and attribute combinations.
 * Default constraints when there is a reasonable alternative to NULL.
 
----?image=../presentation/assets/background/4_5_demo.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=15
 
 ### Demo Time
 
@@ -183,14 +183,14 @@ Use constraints liberally.
 5. R - dplyr
 6. R - Data and Outlier Analysis
 
----?image=../presentation/assets/background/6_1_mapping_table.jpg&opacity=15
+---?image=presentation/assets/background/6_1_mapping_table.jpg&opacity=15
 
 ### Mapping Tables
 
 One technique for creating higher-level categories for items in transactional data is to use a mapping table:  an external relationship made without directly modifying the primary data.
 This can be a new (nullable) column on an existing table or a foreign key to a new table with the mapping relationhship.
 
----?image=../presentation/assets/background/4_5_demo.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=15
 
 ### Demo Time
 
@@ -206,7 +206,7 @@ This can be a new (nullable) column on an existing table or a foreign key to a n
 5. R - dplyr
 6. R - Data and Outlier Analysis
 
----?image=../presentation/assets/background/7_1_tidy.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/7_1_tidy.jpg&size=cover&opacity=15
 
 ### What is Tidy Data?
 
@@ -216,7 +216,7 @@ Notes from Hadley Wickham's **Structuring Datasets to Facilitate Analysis**
 2. Variables contain all values that measure the same underlying attribute (e.g., height, temperature, duration) across units
 3. Observations contain all values measured on the same unit (a person, a day, a hospital stay) across attributes
 
----?image=../presentation/assets/background/7_2_tidy.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/7_2_tidy.jpg&size=cover&opacity=15
 
 ### More on Tidy Data
 
@@ -238,7 +238,7 @@ Notes from Hadley Wickham's **Structuring Datasets to Facilitate Analysis**
 tidyr is a library whose purpose is to use simple functions to make data frames tidy.  It includes functions like gather (unpivot), separate (split apart a variable), and spread (pivot).
 @divend
 
----?image=../presentation/assets/background/4_5_demo.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=15
 
 ### Demo Time
 
@@ -267,7 +267,7 @@ tidyr is just one part of the tidyverse.  Other tidyverse packages include dplyr
 We will take a closer look at dplyr with the next example.
 @divend
 
----?image=../presentation/assets/background/4_5_demo.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=15
 
 ### Demo Time
 
@@ -283,13 +283,13 @@ We will take a closer look at dplyr with the next example.
 5. R - dplyr
 6. **R - Data and Outlier Analysis**
 
----?image=../presentation/assets/background/8_1_outlier.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/8_1_outlier.jpg&size=cover&opacity=15
 
 ### Data and Outliers
 
 Using tidyr, dplyr, and some basic visualization techniques, we can perform univariate and multivariate analysis to determine whether the data is clean.  We will focus mostly on univariate and visual analysis in the following example.
 
----?image=../presentation/assets/background/4_5_demo.jpg&size=cover&opacity=15
+---?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=15
 
 ### Demo Time
 
