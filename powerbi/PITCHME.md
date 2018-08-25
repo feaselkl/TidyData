@@ -167,10 +167,6 @@ Use constraints liberally.
 * Check constraints to explain valid domains for attributes and attribute combinations.
 * Default constraints when there is a reasonable alternative to NULL.
 
----?image=presentation/assets/background/4_5_demo.jpg&size=cover&opacity=15
-
-### Demo Time
-
 ---
 
 @title[R - tidyr]
