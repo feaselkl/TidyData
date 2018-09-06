@@ -29,6 +29,7 @@
 
 .reveal p span.slide-title {
   color: white;
+  text-shadow: 1px 0 0;
   background: #3e2e59;
   padding: 4px 15px;
   opacity: 0.75 !important;
