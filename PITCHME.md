@@ -11,7 +11,7 @@
 
 @title[Who Am I?]
 
-@snap[west splitscreen]
+@div[left-60]
 <table>
 	<tr>
 		<td><a href="https://csmore.info"><img src="https://www.catallaxyservices.com/media/Logo.png" height="133" width="119" /></a></td>
@@ -26,15 +26,15 @@
 		<td><a href="https://wespeaklinux.com">We Speak Linux</a></td>
 	</tr>
 </table>
-@snapend
+@divend
 
-@snap[east splitscreen]
-<div>
-	<a href="http://www.twitter.com/feaselkl"><img src="https://www.catallaxyservices.com/media/HeadShot.jpg" height="358" width="315" /></a>
+@div[right-40]
+	<br /><br />
+	<a href="https://www.twitter.com/feaselkl"><img src="https://www.catallaxyservices.com/media/HeadShot.jpg" height="358" width="315" /></a>
 	<br />
-	<a href="http://www.twitter.com/feaselkl">@feaselkl</a>
+	<a href="https://www.twitter.com/feaselkl">@feaselkl</a>
 </div>
-@snapend
+@divend
 
 ---?image=presentation/assets/background/2_0_cleaning.jpg&size=cover&opacity=20
 
