@@ -25,6 +25,23 @@
   border-radius: 15px;
   opacity: 0.75 !important;
   font-size: 50% !important;
+  text-shadow: none;	
+}
+
+.reveal p {
+	text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+.reveal li {
+	text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
 }
 
 .reveal p span.slide-title {
@@ -55,10 +72,12 @@
 
 .reveal a {
     # color: #af5a08 !important;
+	text-shadow: none;
 }
 
 .reveal a:hover {
     # color: #e27b1f !important;
+	text-shadow: none;
 }
 
 #gp-logo img {
