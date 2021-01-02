@@ -1,0 +1,402 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Catallaxy Services | Data Cleansing with SQL and R</title>
+
+		<link rel="stylesheet" href="../reveal.js/dist/reset.css">
+		<link rel="stylesheet" href="../reveal.js/dist/reveal.css">
+		<link rel="stylesheet" href="../reveal.js/dist/theme/black.css" id="theme">
+		<link rel="stylesheet" href="../WebsiteAssets/mods.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="../reveal.js/plugin/highlight/monokai.css" id="highlight-theme">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h2>Data Cleansing with SQL and R</h2>
+					
+					<a href="https://www.catallaxyservices.com">Kevin Feasel</a> (<a href="https://twitter.com/feaselkl">@feaselkl</a>)<br />
+					<a href="https://csmore.info/on/cleansing">https://csmore.info/on/cleansing</a>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Who Am I?  What Am I Doing Here?</h3>
+					<div class="container">
+						<div class="col">
+							<table class="whoami">
+								<tr>
+									<td><a href="https://csmore.info"><img src="../WebsiteAssets/Logo.png" height="100" /></a></td>
+									<td nowrap><a href="https://csmore.info">Catallaxy Services</a></td>
+								</tr>
+								<tr>
+									<td><a href="https://curatedsql.com"><img src="../WebsiteAssets/CuratedSQLLogo.png" height="100" /></a></td>
+									<td nowrap><a href="https://curatedsql.com">Curated SQL</a></td>
+								</tr>
+								<tr>
+									<td><a href="https://www.apress.com/us/book/9781484254608"><img src="../WebsiteAssets/PolyBaseRevealed.png" height="120" /></a></td>
+									<td nowrap><a href="https://www.apress.com/us/book/9781484254608">PolyBase Revealed</a></td>
+								</tr>
+							</table>
+						</div>
+						<div class="col">
+							<a href="http://www.twitter.com/feaselkl"><img src="../WebsiteAssets/HeadShot.jpg" height="358" width="315" /></a>
+							<br />
+							<a href="http://www.twitter.com/feaselkl">@feaselkl</a>
+						</div>					
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/2_0_cleaning.jpg" data-background-opacity="0.2">
+					<h3>Dirty Data</h3>
+					
+					<p>What is dirty data?</p>
+
+					<ul>
+						<li>Inconsistent data</li>
+						<li>Invalid data</li>
+						<li>Incomplete data</li>
+						<li>Inaccurate data</li>
+						<li>Duplicate data</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/2_1_philosophy.jpg" data-background-opacity="0.2">
+					<h3>Philosophy</h3>
+					
+					<p>The ideal solution is to clean data at the nearest possible point.  In rank order:</p>
+
+					<ol>
+						<li>Before it gets into the OLTP system</li>
+						<li>Once it is in the OLTP system</li>
+						<li>ETL process to the warehouse</li>
+						<li>Once it is in the warehouse</li>
+						<li>During data analysis</li>
+					</ol>
+					
+					<p>Not all systems follow OLTP => DW => Analysis, so it is valuable to know multiple techniques for data cleansing.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/2_2_motivation.jpg" data-background-opacity="0.2">
+					<h3>Motivation</h3>
+					
+					<p>Today's talk will focus on data cleansing within SQL Server and R, with an emphasis on R.  In SQL Server, we will focus on data structures.  In R, we will focus on the concept of tidy data.</p>
+
+					<p>This will necessarily be an incomplete survey of data cleansing techniques, but should serve as a starting point for further exploration.</p>
+
+					<p>We will not look at Data Quality Services or other data provenance tools in this talk, but these tools are important.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li class="active">High-Level Concepts</li>
+						<li>SQL Server - Constraints</li>
+						<li>SQL Server - Mapping Tables</li>
+						<li>R - tidyr</li>
+						<li>R - dplyr</li>
+						<li>R - Data and Outlier Analysis</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4" data-markdown>
+					<textarea data-template>
+					### Data Quality Issues
+					
+					| Type | Sample Issues |
+					| ---- | ------------- |
+					| Consistency | Misspellings? Data stored in multiple places out of sync? |
+					| Validity | Physically or logically impossible answers? |
+					| Completeness | Missing values (NULL, NA, etc.)? |
+					| Accuracy | Absurd-looking answers?  Multiple sources with conflicting results?  Suspicious sources? |
+					| Duplication | Can I tell if data is duplicated? |
+					</textarea>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/3_6_rules.jpg" data-background-opacity="0.2">
+					<h3>Rules of Thumb</h3>
+					
+					<ol>
+						<li>Impossible measurements (e.g., count of people over 500 years old) should go. Don't waste the space storing that.</li>
+						<li>"Missing" data (e.g., records with some NULL values) should stay, although might not be viable for all analyses.</li>
+						<li>Fixable bad data (e.g., misspellings, errors where intention is known) should be fixed and stay.</li>
+						<li>Unfixable bad data is a tougher call.  Could set to default, make a "best guess" change(!!), set to {NA, NULL, Unknown}, or drop from the analysis.</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>High-Level Concepts</li>
+						<li class="active">SQL Server - Constraints</li>
+						<li>SQL Server - Mapping Tables</li>
+						<li>R - tidyr</li>
+						<li>R - dplyr</li>
+						<li>R - Data and Outlier Analysis</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/4_1_dataquality.jpg" data-background-opacity="0.2">
+					<h3>Relational Data Quality Tools</h3>
+					
+					<ul>
+						<li>Normalization</li>
+						<li>Data types</li>
+						<li>Primary key constraints</li>
+						<li>Unique key constraints</li>
+						<li>Foreign key constraints</li>
+						<li>Check constraints</li>
+						<li>Default constraints</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Normalization</h3>
+					
+					<p>When in doubt, go with Boyce-Codd Normal Form.</p>
+
+					<p><strong>First Normal Form</strong> - consistent shape + unique entities + atomic attributes</p>
+					
+					<div class='container'>
+						<div class='col'>
+							<img src="presentation/assets/image/4_1_normalization.png" />
+						</div>
+						<div class='col'>
+							<p><strong>Boyce-Codd Normal Form</strong> - 1NF + all attributes fully dependent upon a candidate key + every determinant is a key.</p>
+						</div>
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/4_3_datatypes.jpg" data-background-opacity="0.2">
+					<h3>Data Types</h3>
+					
+					<p>Think through your data type choices.</p>
+					
+					<ul>
+						<li>Use the best data type (int/decimal for numeric, date/datetime/datetime2/time for date data, etc.)</li>
+						<li>Use the smallest data type which solves the problem (Ex: date instead of datetime, varchar(10) instead of varchar(max))</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/4_4_constraints.jpg" data-background-opacity="0.2">
+					<h3>Constraints</h3>
+					
+					<p>Use constraints liberally.</p>
+					
+					<ul>
+						<li>Primary key to describe the primary set of attributes which describes an entity.</li>
+						<li>Unique keys to describe alternate sets of attributes which describe an entity.</li>
+						<li>Foreign keys to describe how entities relate.</li>
+						<li>Check constraints to explain valid domains for attributes and attribute combinations.</li>
+						<li>Default constraints when there is a reasonable alternative to NULL.</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/4_5_demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>High-Level Concepts</li>
+						<li>SQL Server - Constraints</li>
+						<li class="active">SQL Server - Mapping Tables</li>
+						<li>R - tidyr</li>
+						<li>R - dplyr</li>
+						<li>R - Data and Outlier Analysis</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/6_1_mapping_table.jpg" data-background-opacity="0.2">
+					<h3>Mapping Tables</h3>
+					
+					<p>One technique for creating higher-level categories for items in transactional data is to use a mapping table:  an external relationship made without directly modifying the primary data.</p>
+
+					<p>This can be a new (nullable) column on an existing table or a foreign key to a new table with the mapping relationhship.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/4_5_demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>High-Level Concepts</li>
+						<li>SQL Server - Constraints</li>
+						<li>SQL Server - Mapping Tables</li>
+						<li class="active">R - tidyr</li>
+						<li>R - dplyr</li>
+						<li>R - Data and Outlier Analysis</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/7_1_tidy.jpg" data-background-opacity="0.2">
+					<h3>What is Tidy Data?</h3>
+					
+					<p>Notes from Hadley Wickham's <strong>Structuring Datasets to Facilitate Analysis</strong></p>
+					
+					<ol>
+						<li>Data sets are made of variables and observations (attributes and entities).</li>
+						<li>Variables contain all values that measure the same underlying attribute (e.g., height, temperature, duration) across units.</li>
+						<li>Observations contain all values measured on the same unit (a person, a day, a hospital stay) across attributes.</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/7_2_tidy.jpg" data-background-opacity="0.2">
+					<h3>More on Tidy Data</h3>
+					
+					<p>Notes from Hadley Wickham's <strong>Structuring Datasets to Facilitate Analysis</strong></p>
+					
+					<ol>
+						<li>It is easier to describe relationships between variables (age is a function of birthdate and current date).</li>
+						<li>It is easier to make comparisons between groups of attributes (how many people are using this phone number?).</li>
+						<li>Tidy data IS third normal form (or, preferably, Boyce-Codd Normal Form)!</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>tidyr</h3>
+					
+					<div class='container'>
+						<div class='col'>
+							<img src="presentation/assets/image/hex-tidyr.png" height="400" />
+						</div>
+						<div class='col'>
+							<p>tidyr is a library whose purpose is to use simple functions to make data frames tidy.  It includes functions like gather (unpivot), separate (split apart a variable), and spread (pivot).</p>
+						</div>
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/4_5_demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>High-Level Concepts</li>
+						<li>SQL Server - Constraints</li>
+						<li>SQL Server - Mapping Tables</li>
+						<li>R - tidyr</li>
+						<li class="active">R - dplyr</li>
+						<li>R - Data and Outlier Analysis</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>dplyr</h3>
+					
+					<div class='container'>
+						<div class='col'>
+							<img src="presentation/assets/image/hex-dplyr.png" height="400" />
+						</div>
+						<div class='col'>
+							<p>tidyr is just one part of the tidyverse.  Other tidyverse packages include dplyr, lubridate, and readr.</p>
+							<p>We will take a closer look at dplyr with the next example.</p>
+						</div>
+					</div>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/4_5_demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Agenda</h3>
+					
+					<ol>
+						<li>High-Level Concepts</li>
+						<li>SQL Server - Constraints</li>
+						<li>SQL Server - Mapping Tables</li>
+						<li>R - tidyr</li>
+						<li>R - dplyr</li>
+						<li class="active">R - Data and Outlier Analysis</li>
+					</ol>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/8_1_outlier.jpg" data-background-opacity="0.2">
+					<h3>Data and Outliers</h3>
+					
+					<p>Using tidyr, dplyr, and some basic visualization techniques, we can perform univariate and multivariate analysis to determine whether the data is clean.  We will focus mostly on univariate and visual analysis in the following example.</p>
+				</section>
+				
+				<section data-background-image="presentation/assets/background/4_5_demo.jpg" data-background-opacity="0.2">
+					<h3>Demo Time</h3>
+				</section>
+
+				<section data-background-image="presentation/assets/background/wrappingup.jpg" data-background-opacity="0.2">
+					<h3>Wrapping Up</h3>
+					
+					<p>This has been a quick survey of data cleansing techniques.  For next steps, look at:</p>
+
+					<ul>
+						<li>SQL Server Data Quality Services</li>
+						<li>Integration with external data sources (APIs to look up UPCs, postal addresses, etc.)</li>
+						<li>Value distribution analysis (ex: Benford's Law)</li>
+					</ul>
+				</section>
+				
+				<section data-background-image="presentation/assets/image/Bubbles.jpg" data-background-opacity="0.4">
+					<h3>Wrapping Up</h3>
+					
+					<p>
+						To learn more, go here:
+						<br />
+						<a href="https://csmore.info/on/cleansing">https://csmore.info/on/cleansing</a>
+					</p>
+					<br />
+					<p>
+						And for help, contact me:
+						<br />
+						<a href="mailto:feasel@catallaxyservices.com">feasel@catallaxyservices.com</a> | <a href="https://www.twitter.com/feaselkl">@feaselkl</a>
+					</p>
+					<br />
+					<p>
+						Catallaxy Services consulting:
+						<br />
+						<a href="https://csmore.info/contact">https://CSmore.info/on/contact</a>
+					</p>
+				</section>
+			</div>
+		</div>
+
+		<script src="../reveal.js/dist/reveal.js"></script>
+		<script src="../reveal.js/plugin/zoom/zoom.js"></script>
+		<script src="../reveal.js/plugin/notes/notes.js"></script>
+		<script src="../reveal.js/plugin/search/search.js"></script>
+		<script src="../reveal.js/plugin/markdown/markdown.js"></script>
+		<script src="../reveal.js/plugin/math/math.js"></script>
+		<script src="../reveal.js/plugin/menu/menu.js"></script>
+		<script src="../reveal.js/plugin/highlight/highlight.js"></script>
+		<script src="../reveal.js/plugin/chart/Chart.min.js"></script>
+		<script src="../reveal.js/plugin/chart/plugin.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				width: '70%',
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				transition: 'fade',
+				
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMath, RevealMenu, RevealChart ]
+			});
+		</script>
+	</body>
+</html>
